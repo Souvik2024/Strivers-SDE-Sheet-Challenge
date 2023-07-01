@@ -1,0 +1,15 @@
+
+class Solution:
+    def JobScheduling(self,Jobs,n):
+        Jobs.sort(key=lambda x:x.profit,reverse=True)
+        time=0
+        profit=0
+        vis=[0]*n
+        for i in Jobs:
+            for j in range(i.deadline-1,-1,-1):
+                if vis[j]==0:
+                    vis[j]=1
+                    time+=1
+                    profit+=i.profit
+                    break
+        return time,profit
